@@ -1,18 +1,20 @@
 <template>
   <div class="list">
-    <ul>
-      <li v-for="launch in launches" :key="launch.id">
-        {{launch.name}}
-      </li>
-    </ul>
+    <LaunchList :data="launch" v-for="launch in launches" :key="launch.id"/>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import LaunchList from '@/components/LaunchList.vue';
+
 export default {
   name: 'List',
   props: {
     launches: Object,
+  },
+  components: {
+    LaunchList,
   },
 };
 </script>
