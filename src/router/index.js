@@ -11,12 +11,20 @@ const routes = [
     component: Accueil,
   },
   {
-    path: '/favoris',
+    path: '/favorites',
     name: 'Favoris',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Favorites.vue'),
+    component: () => import('../views/Favorites.vue'),
+  },
+  {
+    path: '/launch/404',
+    name: 'LaunchNotFound',
+    component: () => import('../views/LaunchNotFound.vue'),
+  },
+  {
+    path: '/launch/:launch',
+    name: 'Launch',
+    props: true,
+    component: () => import('../views/Launch.vue'),
   },
 ];
 

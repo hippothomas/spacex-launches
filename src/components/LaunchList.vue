@@ -14,10 +14,10 @@
             {{data.details}}
         </div>
         <div class="favorite">
-            <img src="../assets/star.png" alt="Ajouter aux Favoris" />
+            <img src="../assets/star_empty.png" alt="Ajouter aux Favoris" />
         </div>
         <div class="read-more">
-            <a href="#">Lire la suite...</a>
+            <a :href="'/launch/' + data.name + '-' + data.id">Lire la suite...</a>
         </div>
     </div>
   </div>
@@ -66,7 +66,9 @@ export default {
         }
 
         .description {
-            text-align: center;
+            max-height: 105px;
+            overflow: hidden;
+            text-align: left;
         }
 
         .favorite {
@@ -87,7 +89,7 @@ export default {
 
             a {
                 color: #fff;
-                background: cornflowerblue;
+                background: #1b1b1b;
                 text-decoration: none;
                 padding: 8px 13px;
                 border-radius: 4px;

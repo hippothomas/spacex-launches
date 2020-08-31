@@ -12,7 +12,7 @@ import List from '@/components/List.vue';
 
 export default {
   name: 'Accueil',
-  data: function data() {
+  data() {
     return {
       launches: {},
     };

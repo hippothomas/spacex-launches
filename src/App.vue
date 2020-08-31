@@ -1,10 +1,17 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Accueil</router-link> |
-      <router-link to="/favoris">Favoris</router-link>
+      <div class="title">
+        <router-link to="/">SpaceX Launches</router-link>
+      </div>
+      <div class="links-router">
+        <router-link to="/">Accueil</router-link>
+        <router-link to="/favorites">Favoris</router-link>
+      </div>
     </div>
-    <router-view/>
+    <div id="wrapper">
+      <router-view/>
+    </div>
     <div id="footer">
       &copy; SpaceX Launches - 2020
     </div>
@@ -12,24 +19,46 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+body {
+  margin: 0;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  #wrapper {
+    min-height: calc(100vh - 120px);
+  }
+
+  #nav {
+    background: #1b1b1b;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      font-weight: bold;
     }
+
+    a {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+
+      &.router-link-exact-active {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #footer {
+    margin-bottom: 10px;
   }
 }
 </style>
