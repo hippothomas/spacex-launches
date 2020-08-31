@@ -1,6 +1,10 @@
 <template>
-  <div class="hello">
-    
+  <div class="list">
+    <ul>
+      <li v-for="launch in launches" :key="launch.id">
+        {{launch.name}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -8,7 +12,7 @@
 export default {
   name: 'List',
   props: {
-    data: String,
+    launches: Object,
   },
 };
 </script>
