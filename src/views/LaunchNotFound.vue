@@ -1,5 +1,8 @@
 <template>
-  <div>404</div>
+    <div>
+        <h2>La page que vous cherchez n’existe pas ou plus...</h2>
+        <a href="/">Revenir à l'Accueil</a>
+    </div>
 </template>
 
 <script>
