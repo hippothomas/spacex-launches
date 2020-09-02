@@ -7,7 +7,17 @@
       <img src="../assets/not_available.png" :alt="launch.name">
     </div>
     <div class="informations">
-      <div class="title">{{launch.name}}</div>
+      <div class="title-wrapper">
+        <div class="title">{{launch.name}}</div>
+        <div class="favorite" v-on:click="addtofav">
+            <img src="../assets/star_empty.png"
+                 alt="Ajouter aux Favoris"
+                 v-if="favorite === false"/>
+            <img src="../assets/star.png"
+                 alt="Retirer des Favoris"
+                 v-if="favorite === true"/>
+        </div>
+      </div>
       <div class="date">
         {{date.toLocaleString()}}
       </div>
@@ -39,10 +49,15 @@
 </template>
 
 <script>
+import store from '@/store/FavoritesStore';
+
 export default {
   name: 'LaunchPage',
   props: {
     launch: Object,
+  },
+  store: {
+    store,
   },
   data() {
     return {
@@ -52,9 +67,14 @@ export default {
       },
       launchpad: null,
       date: null,
+      favorite: false,
     };
   },
   created() {
+    if (store.getters.launch(this.launch.id) !== undefined) {
+      this.favorite = true;
+    }
+
     this.date = new Date(this.launch.date_utc);
 
     if (this.launch.rocket != null) {
@@ -71,6 +91,17 @@ export default {
           this.launchpad = response.data.name;
         });
     }
+  },
+  methods: {
+    addtofav() {
+      if (this.favorite === false) {
+        store.commit('ADD_FAV', this.launch.id);
+        this.favorite = true;
+      } else {
+        store.commit('REMOVE_FAV', this.launch.id);
+        this.favorite = false;
+      }
+    },
   },
 };
 </script>
@@ -100,9 +131,24 @@ export default {
     text-align: left;
     padding-left: 15px;
 
-    .title {
-      font-weight: bold;
-      font-size: 30px;
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+
+      .title {
+        font-weight: bold;
+        font-size: 30px;
+      }
+
+      .favorite {
+        margin-left: 10px;
+        cursor: pointer;
+
+        img {
+          width: 23px;
+          object-fit: contain;
+        }
+      }
     }
 
     .date {
