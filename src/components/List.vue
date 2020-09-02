@@ -11,7 +11,7 @@ import LaunchList from '@/components/LaunchList.vue';
 export default {
   name: 'List',
   props: {
-    launches: Object,
+    launches: Array,
   },
   components: {
     LaunchList,

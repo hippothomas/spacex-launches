@@ -14,13 +14,13 @@ export default {
   name: 'Accueil',
   data() {
     return {
-      launches: {},
+      launches: [],
     };
   },
   components: {
     List,
   },
-  mounted() {
+  created() {
     this.$axios.get('https://api.spacexdata.com/v4/launches')
       .then((response) => {
         this.launches = response.data;

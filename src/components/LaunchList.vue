@@ -13,21 +13,52 @@
         <div class="description">
             {{data.details}}
         </div>
-        <div class="favorite">
-            <img src="../assets/star_empty.png" alt="Ajouter aux Favoris" />
+        <div class="favorite" v-on:click="addtofav">
+            <img src="../assets/star_empty.png"
+                 alt="Ajouter aux Favoris"
+                 v-if="favorite === false"/>
+            <img src="../assets/star.png"
+                 alt="Retirer des Favoris"
+                 v-if="favorite === true"/>
         </div>
         <div class="read-more">
-            <a :href="'/launch/' + data.name + '-' + data.id">Lire la suite...</a>
+            <router-link :to="'/launch/' + data.name + '-' + data.id">Lire la suite...</router-link>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import store from '@/store/FavoritesStore';
+
 export default {
   name: 'LaunchList',
   props: {
     data: Object,
+  },
+  store: {
+    store,
+  },
+  data() {
+    return {
+      favorite: false,
+    };
+  },
+  created() {
+    if (store.getters.launch(this.data.id) !== undefined) {
+      this.favorite = true;
+    }
+  },
+  methods: {
+    addtofav() {
+      if (this.favorite === false) {
+        store.commit('ADD_FAV', this.data.id);
+        this.favorite = true;
+      } else {
+        store.commit('REMOVE_FAV', this.data.id);
+        this.favorite = false;
+      }
+    },
   },
 };
 </script>
@@ -75,6 +106,7 @@ export default {
             position: absolute;
             top: 5px;
             right: 15px;
+            cursor: pointer;
 
             img {
                 width: 20px;

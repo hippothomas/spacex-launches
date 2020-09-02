@@ -44,6 +44,9 @@ body {
 
     .title {
       font-weight: bold;
+      a {
+        text-decoration: none !important;
+      }
     }
 
     a {
