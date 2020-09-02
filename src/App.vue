@@ -18,6 +18,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'app',
+  created() {
+    document.title = 'SpaceX Launches';
+  },
+};
+</script>
+
 <style lang="scss">
 body {
   margin: 0;

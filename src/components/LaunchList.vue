@@ -8,7 +8,7 @@
     </div>
     <div class="details">
         <div class="title">
-            {{data.name}}
+            <router-link :to="'/launch/' + data.name + '-' + data.id">{{data.name}}</router-link>
         </div>
         <div class="description">
             {{data.details}}
@@ -94,6 +94,11 @@ export default {
             font-weight: bold;
             font-size: 20px;
             margin-bottom: 15px;
+
+            a {
+                color: inherit;
+                text-decoration: inherit;
+            }
         }
 
         .description {

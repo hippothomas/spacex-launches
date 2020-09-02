@@ -7,16 +7,19 @@
       <img src="../assets/not_available.png" :alt="launch.name">
     </div>
     <div class="informations">
-      <div class="title-wrapper">
-        <div class="title">{{launch.name}}</div>
-        <div class="favorite" v-on:click="addtofav">
-            <img src="../assets/star_empty.png"
-                 alt="Ajouter aux Favoris"
-                 v-if="favorite === false"/>
-            <img src="../assets/star.png"
-                 alt="Retirer des Favoris"
-                 v-if="favorite === true"/>
+      <div class="header-wrapper">
+        <div class="title-wrapper">
+          <div class="title">{{launch.name}}</div>
+          <div class="favorite" v-on:click="addtofav">
+              <img src="../assets/star_empty.png"
+                  alt="Ajouter aux Favoris"
+                  v-if="favorite === false"/>
+              <img src="../assets/star.png"
+                  alt="Retirer des Favoris"
+                  v-if="favorite === true"/>
+          </div>
         </div>
+        <router-link to="/">Retour à la Liste</router-link>
       </div>
       <div class="date">
         {{date.toLocaleString()}}
@@ -110,7 +113,7 @@ export default {
 <style scoped lang="scss">
 #launch {
   width: 80%;
-  max-width: 950px;
+  max-width: 1100px;
   margin: auto;
   margin-bottom: 30px;
   display: flex;
@@ -131,22 +134,36 @@ export default {
     text-align: left;
     padding-left: 15px;
 
-    .title-wrapper {
+    .header-wrapper {
       display: flex;
+      justify-content: space-between;
       align-items: center;
 
-      .title {
-        font-weight: bold;
-        font-size: 30px;
+      a {
+        color: #fff;
+        background-color: #1b1b1b;
+        text-decoration: none;
+        padding: 8px 13px;
+        border-radius: 4px;
       }
 
-      .favorite {
-        margin-left: 10px;
-        cursor: pointer;
+      .title-wrapper {
+        display: flex;
+        align-items: center;
 
-        img {
-          width: 23px;
-          object-fit: contain;
+        .title {
+          font-weight: bold;
+          font-size: 30px;
+        }
+
+        .favorite {
+          margin-left: 10px;
+          cursor: pointer;
+
+          img {
+            width: 23px;
+            object-fit: contain;
+          }
         }
       }
     }
