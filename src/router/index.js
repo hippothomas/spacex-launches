@@ -11,14 +11,19 @@ const routes = [
     component: Accueil,
   },
   {
+    path: '/page/:numero',
+    name: 'Accueil - Pagination',
+    component: Accueil,
+  },
+  {
     path: '/favorites',
     name: 'Favoris',
     component: () => import('../views/Favorites.vue'),
   },
   {
-    path: '/launch/404',
-    name: 'LaunchNotFound',
-    component: () => import('../views/LaunchNotFound.vue'),
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue'),
   },
   {
     path: '/launch/:launch',
