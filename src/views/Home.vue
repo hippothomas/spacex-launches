@@ -40,6 +40,7 @@ export default {
     List,
   },
   created() {
+    // On récupère l'id de la page passé en paramètre d'url
     const pageId = this.$route.params.numero;
 
     // Si pageId est un nombre
@@ -47,6 +48,7 @@ export default {
       this.page = pageId;
     }
 
+    // Préparation de la requete à envoyer
     const query = {
       query: {},
       options: {
@@ -54,6 +56,7 @@ export default {
       },
     };
 
+    // On recupère les informations en passant par un query pour avoir un pagination
     this.$axios.post('https://api.spacexdata.com/v4/launches/query', query)
       .then((response) => {
         this.launches = response.data.docs;
@@ -62,11 +65,11 @@ export default {
         this.prevPage = response.data.prevPage;
         this.nextPage = response.data.nextPage;
 
+        // Si le numéro de page n'est pas dans la bonne fourchette de page
         if (this.totalPages < this.page) {
           this.$router.push('/404');
         }
-      })
-      .catch((error) => console.log(error));
+      });
   },
 };
 </script>
@@ -76,7 +79,7 @@ export default {
 .home {
   .pagination {
     width: 80%;
-    max-width: 1100px;
+    max-width: 950px;
     margin: auto;
     display: flex;
     justify-content: space-between;

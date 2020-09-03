@@ -45,6 +45,7 @@ export default {
     };
   },
   created() {
+    // On check si le lancement est en favoris
     if (store.getters.launch(this.data.id) !== undefined) {
       this.favorite = true;
     }
@@ -52,9 +53,11 @@ export default {
   methods: {
     addtofav() {
       if (this.favorite === false) {
+        // Ajout du lancement en favoris
         store.commit('ADD_FAV', this.data.id);
         this.favorite = true;
       } else {
+        // Suppression du lancement des favoris
         store.commit('REMOVE_FAV', this.data.id);
         this.favorite = false;
       }

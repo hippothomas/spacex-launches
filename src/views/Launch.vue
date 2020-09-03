@@ -10,7 +10,6 @@ import LaunchPage from '@/components/LaunchPage.vue';
 
 export default {
   name: 'Launch',
-  props: ['launchPath'],
   data() {
     return {
       launch: {},
@@ -20,6 +19,7 @@ export default {
     LaunchPage,
   },
   mounted() {
+    // On récupère l'id dans l'url
     let id = this.$route.path.split('-');
     id = id[id.length - 1];
 
@@ -34,8 +34,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-</style>

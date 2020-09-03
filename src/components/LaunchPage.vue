@@ -74,12 +74,15 @@ export default {
     };
   },
   created() {
+    // On check si le lancement est en favoris
     if (store.getters.launch(this.launch.id) !== undefined) {
       this.favorite = true;
     }
 
+    // On crée un objet Date pour ensuite l'affichée formattée
     this.date = new Date(this.launch.date_utc);
 
+    // On récupère les informations sur la fusée
     if (this.launch.rocket != null) {
       this.$axios.get(`https://api.spacexdata.com/v4/rockets/${this.launch.rocket}`)
         .then((response) => {
@@ -88,6 +91,7 @@ export default {
         });
     }
 
+    // On récupère les informations sur le site lancements
     if (this.launch.launchpad != null) {
       this.$axios.get(`https://api.spacexdata.com/v4/launchpads/${this.launch.launchpad}`)
         .then((response) => {
@@ -98,9 +102,11 @@ export default {
   methods: {
     addtofav() {
       if (this.favorite === false) {
+        // Ajout du lancement en favoris
         store.commit('ADD_FAV', this.launch.id);
         this.favorite = true;
       } else {
+        // Suppression du lancement des favoris
         store.commit('REMOVE_FAV', this.launch.id);
         this.favorite = false;
       }

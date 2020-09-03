@@ -24,14 +24,15 @@ export default {
     List,
   },
   created() {
+    // On récupère tout les lancements en favoris
     const launchesStore = store.getters.launches;
 
+    // On boucle sur chaque lancement pour récuperer les informations à afficher
     launchesStore.forEach((launch) => {
       this.$axios.get(`https://api.spacexdata.com/v4/launches/${launch.id}`)
         .then((response) => {
           this.launches.push(response.data);
-        })
-        .catch((error) => console.log(error));
+        });
     });
   },
 };
